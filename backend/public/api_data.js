@@ -1,0 +1,163 @@
+define({ "api": [
+  {
+    "type": "get",
+    "url": "/tweets/stream",
+    "title": "Subscribe to server sent events",
+    "name": "ServerSentEvents",
+    "description": "<p>Server Sent Events are one way communication from server to the client. When a client submits a new post, replies to a post or likes a post, the SSE will stream the relevant data to all connected clients that are subscribed to it.</p>",
+    "group": "SSR",
+    "version": "0.0.0",
+    "filename": "src/routes/tweets.js",
+    "groupTitle": "SSR"
+  },
+  {
+    "type": "get",
+    "url": "/tweets/:id",
+    "title": "Get Tweet information",
+    "name": "GetTweet",
+    "group": "Tweets",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tweet's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"id\": \"5281a130-1f97-11e8-b7af-391fc61adb5c\"\n   \"nickname\": \"Sohail\",\n   \"comment\": \"This is a fake twitter app\",\n   \"likes\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/tweets.js",
+    "groupTitle": "Tweets"
+  },
+  {
+    "type": "get",
+    "url": "/tweets",
+    "title": "Get all tweets",
+    "name": "GetTweets",
+    "group": "Tweets",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"id\" : \"5281a130-1f97-11e8-b7af-391fc61adb5c\"\n   \"nickname\": \"Sohail\",\n   \"comment\": \"This is a fake twitter app\",\n   \"likes\": 0\n },\n {\n   \"id\": \"6781a130-1f97-11e8-b7af-391fc61xdb5c\"\n   \"nickname\": \"Sohail\",\n   \"comment\": \"Its built using NodeJS, VueJS, REST APIs and Server Sent Events\",\n   \"likes\": 100,\n   \"replies\": [\n     {\n       \"id\": \"4581a130-1f97-11e8-b7af-391ac61adb5c\"\n       \"nickname\": \"Batman\",\n       \"comment\": \"What!! You can do that??\"\n     }\n   ]\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/tweets.js",
+    "groupTitle": "Tweets"
+  },
+  {
+    "type": "post",
+    "url": "/tweets",
+    "title": "Post a new tweet",
+    "name": "PostTweet",
+    "group": "Tweets",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n     \"nickname\": \"Sohail\",\n     \"comment\": \"This is a fake twitter app\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"id\": \"5281a130-1f97-11e8-b7af-391fc61adb5c\"\n   \"nickname\": \"Sohail\",\n   \"comment\": \"This is a fake twitter app\",\n   \"likes\": 0\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/tweets.js",
+    "groupTitle": "Tweets"
+  },
+  {
+    "type": "post",
+    "url": "/tweets/:id/replies",
+    "title": "Post a new reply to a given tweet",
+    "name": "PostTweetReply",
+    "group": "Tweets",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tweet's unique ID.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"nickname\": \"Batman\",\n  \"comment\": \"What!! You can do that??\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n {\n   \"id\": \"6781a130-1f97-11e8-b7af-391fc61xdb5c\",\n    \"nickname\": \"Sohail\",\n    \"comment\": \"Its built using NodeJS, VueJS, REST APIs and Server Sent Events\",\n    \"likes\": 100,\n    \"replies\": [\n      {\n       \"id\": \"4581a130-1f97-11e8-b7af-391ac61adb5c\",\n        \"nickname\": \"Batman\",\n        \"comment\": \"What!! You can do that??\"\n      }\n    ]\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/tweets.js",
+    "groupTitle": "Tweets"
+  },
+  {
+    "type": "put",
+    "url": "/tweets/:id/likes",
+    "title": "Like a tweet",
+    "name": "PutTweetLike",
+    "group": "Tweets",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tweet's unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n {\n     \"nickname\": \"Sohail\",\n     \"comment\": \"This is a fake twitter app\",\n     \"likes\": 1\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/routes/tweets.js",
+    "groupTitle": "Tweets"
+  }
+] });

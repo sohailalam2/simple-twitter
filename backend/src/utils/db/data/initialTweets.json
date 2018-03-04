@@ -1,0 +1,18 @@
+[
+  {
+    "nickname": "Sohail",
+    "comment": "This is a fake twitter app",
+    "likes": 0
+  },
+  {
+    "nickname": "Sohail",
+    "comment": "Its built using NodeJS, VueJS, REST APIs and Server Sent Events",
+    "likes": 100,
+    "replies": [
+      {
+        "nickname": "Batman",
+        "comment": "What!! You can do that??"
+      }
+    ]
+  }
+]

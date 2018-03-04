@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  simple-twitter-backend:
+    image: sohailalam2/simple-twitter-backend:latest
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  simple-twitter-frontend:
+    image: sohailalam2/simple-twitter-frontend:latest
+    depends_on:
+      - simple-twitter-backend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
