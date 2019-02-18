@@ -1,5 +1,4 @@
-# Simple Twitter Backend
-===
+# Simple Twitter App
 
 ## Introduction
 
